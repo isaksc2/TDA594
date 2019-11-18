@@ -12,7 +12,14 @@
 	<struct>
 		<and abstract="true" mandatory="true" name="TDA594">
 			<graphics key="collapsed" value="false"/>
-			<feature name="Base"/>
+			<and abstract="true" name="Movement">
+				<feature name="WaveSurfing"/>
+			</and>
+			<feature abstract="true" name="Dodge"/>
+			<feature abstract="true" name="Fire"/>
+			<feature abstract="true" name="Melee"/>
+			<feature abstract="true" name="BetweenRounds"/>
+			<feature abstract="true" name="BetweenMatches"/>
 		</and>
 	</struct>
 </featureModel>
