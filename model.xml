@@ -13,13 +13,68 @@
 		<and abstract="true" mandatory="true" name="TDA594">
 			<graphics key="collapsed" value="false"/>
 			<and abstract="true" name="Movement">
-				<feature name="WaveSurfing"/>
+				<and abstract="true" name="WaveSurfing">
+					<feature name="TrueSurfing"/>
+					<feature name="GoToSurfing"/>
+					<feature name="PrecisePrediction"/>
+				</and>
+				<feature name="Flattener"/>
+				<feature name="RammingMovement"/>
+				<and name="RandomMovement">
+					<feature name="Fluid"/>
+					<feature name="Orbital"/>
+				</and>
+				<feature name="MinimumRiskMovement"/>
+				<feature name="StopAndGo"/>
+				<feature name="ExactPathPredictorMovement"/>
 			</and>
-			<feature abstract="true" name="Dodge"/>
-			<feature abstract="true" name="Fire"/>
-			<feature abstract="true" name="Melee"/>
-			<feature abstract="true" name="BetweenRounds"/>
-			<feature abstract="true" name="BetweenMatches"/>
+			<and abstract="true" name="Targeting">
+				<feature name="VirtualGuns"/>
+				<feature name="GuesFactorGun"/>
+				<feature name="HeadOnTargeting"/>
+				<feature name="CircularTargeting"/>
+				<feature name="LinearTargeting"/>
+				<feature name="PlayItForward"/>
+				<feature name="RandomTargeting"/>
+				<feature name="KDTreeTargeting"/>
+				<feature name="PatternMatching"/>
+				<feature name="CrowdTargeting"/>
+				<feature name="NewFeature1"/>
+			</and>
+			<and abstract="true" name="Utilities">
+				<feature name="Segmentation"/>
+				<feature name="DynamicClustering"/>
+				<feature name="EnergyManagement"/>
+				<and name="MatchTypeIdentification">
+					<feature name="MovementStratChange"/>
+					<feature name="TargetingStratChange"/>
+					<feature name="RadarStratChange"/>
+				</and>
+			</and>
+			<and abstract="true" name="Radar">
+				<feature name="TurnMultiplier"/>
+				<feature name="InfinityLock"/>
+				<feature name="SpinRadar"/>
+			</and>
+			<and abstract="true" name="DataManagement">
+				<feature name="SaveStatBuffer"/>
+				<and name="MovementData">
+					<feature name="SaveGuessFactor"/>
+				</and>
+				<feature name="SaveBulletSynchronizedSnapshots"/>
+				<feature name="WaveSurfingStats"/>
+			</and>
 		</and>
 	</struct>
+	<constraints>
+		<rule>
+			<imp>
+				<var>WaveSurfing</var>
+				<disj>
+					<var>TrueSurfing</var>
+					<var>GoToSurfing</var>
+				</disj>
+			</imp>
+		</rule>
+	</constraints>
 </featureModel>
