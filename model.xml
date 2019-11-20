@@ -13,11 +13,11 @@
 		<and abstract="true" mandatory="true" name="TDA594">
 			<graphics key="collapsed" value="false"/>
 			<and abstract="true" name="Movement">
-				<and abstract="true" name="WaveSurfing">
+				<alt abstract="true" name="WaveSurfing">
 					<feature name="TrueSurfing"/>
 					<feature name="GoToSurfing"/>
-					<feature name="PrecisePrediction"/>
-				</and>
+				</alt>
+				<feature name="PrecisePrediction"/>
 				<feature name="Flattener"/>
 				<feature name="RammingMovement"/>
 				<and name="RandomMovement">
@@ -26,53 +26,77 @@
 				</and>
 				<feature name="MinimumRiskMovement"/>
 				<feature name="StopAndGo"/>
+				<feature name="MovementStratChange"/>
 				<feature name="ExactPathPredictorMovement"/>
 			</and>
 			<and abstract="true" name="Targeting">
 				<feature name="VirtualGuns"/>
-				<feature name="GuesFactorGun"/>
+				<feature name="GuessFactorGun"/>
 				<feature name="HeadOnTargeting"/>
 				<feature name="CircularTargeting"/>
 				<feature name="LinearTargeting"/>
+				<feature name="TargetingStratChange"/>
 				<feature name="PlayItForward"/>
 				<feature name="RandomTargeting"/>
 				<feature name="KDTreeTargeting"/>
 				<feature name="PatternMatching"/>
 				<feature name="CrowdTargeting"/>
-				<feature name="NewFeature1"/>
 			</and>
 			<and abstract="true" name="Utilities">
 				<feature name="Segmentation"/>
 				<feature name="DynamicClustering"/>
 				<feature name="EnergyManagement"/>
-				<and name="MatchTypeIdentification">
-					<feature name="MovementStratChange"/>
-					<feature name="TargetingStratChange"/>
-					<feature name="RadarStratChange"/>
-				</and>
+				<feature name="MatchTypeIdentification"/>
 			</and>
 			<and abstract="true" name="Radar">
 				<feature name="TurnMultiplier"/>
 				<feature name="InfinityLock"/>
+				<feature name="RadarStratChange"/>
 				<feature name="SpinRadar"/>
 			</and>
 			<and abstract="true" name="DataManagement">
-				<feature name="SaveTArgetingData"/>
-				<feature name="SaveMovementData"/>
+				<and name="SaveTargetingData">
+					<feature name="SaveBulletSynchronizedSnapshots"/>
+				</and>
+				<and name="SaveMovementData">
+					<feature name="SaveWaveSurfingStats"/>
+				</and>
 				<feature name="SaveGuessFactor"/>
-				<feature name="SaveBulletSynchronizedSnapshots"/>
-				<feature name="SaveWaveSurfingStats"/>
 			</and>
 		</and>
 	</struct>
 	<constraints>
 		<rule>
 			<imp>
+				<var>PrecisePrediction</var>
 				<var>WaveSurfing</var>
+			</imp>
+		</rule>
+		<rule>
+			<imp>
+				<var>SaveGuessFactor</var>
 				<disj>
-					<var>TrueSurfing</var>
-					<var>GoToSurfing</var>
+					<var>SaveMovementData</var>
+					<var>SaveTargetingData</var>
 				</disj>
+			</imp>
+		</rule>
+		<rule>
+			<imp>
+				<var>MovementStratChange</var>
+				<var>Movement</var>
+			</imp>
+		</rule>
+		<rule>
+			<imp>
+				<var>TargetingStratChange</var>
+				<var>Targeting</var>
+			</imp>
+		</rule>
+		<rule>
+			<imp>
+				<var>RadarStratChange</var>
+				<var>Radar</var>
 			</imp>
 		</rule>
 	</constraints>
