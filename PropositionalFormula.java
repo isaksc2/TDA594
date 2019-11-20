@@ -14,16 +14,15 @@ public class PropositionalFormula {
 	boolean Orbital;
 	boolean MinimumRiskMovement;
 	boolean StopAndGo;
-	boolean MovementStratChange;
 	boolean ExactPathPredictorMovement;
 	
 	boolean Targeting;
+	int nbrVirtualGuns;
 	boolean VirtualGuns;
 	boolean GuessFactorGun;
 	boolean HeadOnTargeting;
 	boolean CircularTargeting;
 	boolean LinearTargeting;
-	boolean TargetingStratChange;
 	boolean PlayItForward;
 	boolean KDTreeTargeting;
 	boolean RandomTargeting;
@@ -33,13 +32,15 @@ public class PropositionalFormula {
 	boolean Utilities;
 	boolean Segmentation;
 	boolean DynamicClustering;
+    boolean MovementStratChange;
+    boolean TargetingStratChange;
+    boolean RadarStratChange;
 	boolean EnergyManagement;
 	boolean MatchTypeIdentification;
 	
 	boolean Radar;
 	boolean TurnMultiplier;
 	boolean InfinityLock;
-	boolean RadarStratChange;
 	boolean SpinRadar;
 	
 	boolean DataManagement;
