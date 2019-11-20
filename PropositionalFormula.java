@@ -17,8 +17,6 @@ public class PropositionalFormula {
 	boolean ExactPathPredictorMovement;
 	
 	boolean Targeting;
-	int nbrVirtualGuns;
-	// VirtualGuns = nbrVirtualGuns > 0
 	boolean VirtualGuns;
 	boolean GuessFactorGun;
 	boolean HeadOnTargeting;
@@ -35,6 +33,8 @@ public class PropositionalFormula {
 	boolean DynamicClustering;
     boolean MovementStratChange;
     boolean TargetingStratChange;
+    int nbrVirtualGuns;
+    // VirtualGuns = nbrVirtualGuns > 0
     boolean RadarStratChange;
 	boolean EnergyManagement;
 	boolean MatchTypeIdentification;
@@ -69,13 +69,14 @@ public class PropositionalFormula {
                 implies(Orbital, RandomMovement)&&
 
         implies(Targeting, TDA594) &&
-            iff(Targeting, VirtualGuns || GuessFactorGun ||HeadOnTargeting || CircularTargeting ||
+            iff(Targeting, GuessFactorGun ||HeadOnTargeting || CircularTargeting ||
             LinearTargeting || PlayItForward || RandomTargeting || PatternMatching || CrowdTargeting) &&
                 implies(KDTreeTargeting, PlayItForward) &&
 
         implies(Utilities, TDA594) &&
             iff(Utilities, Segmentation || DynamicClustering || MovementStratChange || TargetingStratChange ||
             RadarStratChange || EnergyManagement || MatchTypeIdentification) &&
+                implies(VirtualGuns, TargetingStratChange) &&
 
         implies(Radar, TDA594) &&
             iff(Radar, TurnMultiplier || InfinityLock || SpinRadar) &&
@@ -88,6 +89,10 @@ public class PropositionalFormula {
     // cross tree constraints
     implies(PrecisPrediction, WaveSurfing) &&
     implies(Flattener, WaveSurfing) &&
+    implies(Segmentation, WaveSurfing || GuessFactorGun) &&
     implies(DynamicClustering, WaveSurfing || GuessFactorGun) &&
-    implies
+    implies(MovementStratChange, Movement) &&
+    implies(TargetingStratChange, Targeting) &&
+    implies(VirtualGuns, Targeting) &&
+    implies(RadarStratChange, Radar) &&
 }
