@@ -57,12 +57,11 @@
 				<feature name="SpinRadar"/>
 			</and>
 			<and abstract="true" name="DataManagement">
-				<feature name="SaveStatBuffer"/>
-				<and name="MovementData">
-					<feature name="SaveGuessFactor"/>
-				</and>
+				<feature name="SaveTArgetingData"/>
+				<feature name="SaveMovementData"/>
+				<feature name="SaveGuessFactor"/>
 				<feature name="SaveBulletSynchronizedSnapshots"/>
-				<feature name="WaveSurfingStats"/>
+				<feature name="SaveWaveSurfingStats"/>
 			</and>
 		</and>
 	</struct>

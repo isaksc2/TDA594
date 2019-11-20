@@ -39,9 +39,9 @@
 	<feature name="InfinityLock"/>
 	<feature name="SpinRadar"/>
 	<feature name="DataManagement"/>
-	<feature name="SaveStatBuffer"/>
-	<feature name="MovementData"/>
+	<feature name="SaveTArgetingData"/>
+	<feature name="SaveMovementData"/>
 	<feature name="SaveGuessFactor"/>
 	<feature name="SaveBulletSynchronizedSnapshots"/>
-	<feature name="WaveSurfingStats"/>
+	<feature name="SaveWaveSurfingStats"/>
 </configuration>
