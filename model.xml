@@ -14,21 +14,28 @@
 			<graphics key="collapsed" value="false"/>
 			<or abstract="true" name="Movement">
 				<alt abstract="true" name="WaveSurfing">
+					<graphics key="collapsed" value="false"/>
 					<feature name="TrueSurfing"/>
 					<feature name="GoToSurfing"/>
 				</alt>
 				<feature name="PrecisePrediction"/>
 				<feature name="Flattener"/>
 				<feature name="RammingMovement"/>
-				<and name="RandomMovement">
+				<alt name="RandomMovement">
+					<graphics key="collapsed" value="false"/>
 					<feature name="Fluid"/>
 					<feature name="Orbital"/>
-				</and>
+					<feature name="WallSmoothing"/>
+				</alt>
 				<feature name="MinimumRiskMovement"/>
 				<feature name="StopAndGo"/>
 				<feature name="ExactPathPredictorMovement"/>
 				<feature name="GuessFactorDodging"/>
-				<feature name="OscillatorMovement"/>
+				<alt name="OscillatorMovement">
+					<feature name="ForwardBackward"/>
+					<feature name="CopyEnemyMovement"/>
+				</alt>
+				<feature name="NoMovement"/>
 			</or>
 			<or abstract="true" name="Targeting">
 				<feature name="GuessFactorGun"/>
@@ -39,8 +46,12 @@
 					<feature name="KDTreeTargeting"/>
 				</and>
 				<feature name="RandomTargeting"/>
-				<feature name="PatternMatching"/>
+				<or name="PatternMatching">
+					<feature name="SybolicPatternMatching"/>
+					<feature name="FoldedPatternMatching"/>
+				</or>
 				<feature name="CrowdTargeting"/>
+				<feature name="NoFire"/>
 			</or>
 			<or abstract="true" name="Utilities">
 				<feature name="Segmentation"/>
@@ -64,8 +75,10 @@
 				</and>
 				<and name="SaveMovementData">
 					<feature name="SaveWaveSurfingStats"/>
+					<feature name="SavePatternMatchingData"/>
 				</and>
 				<feature name="SaveGuessFactor"/>
+				<feature name="SaveNothing"/>
 			</or>
 		</and>
 	</struct>
