@@ -28,6 +28,7 @@
 				<feature name="StopAndGo"/>
 				<feature name="ExactPathPredictorMovement"/>
 				<feature name="GuessFactorDodging"/>
+				<feature name="OscillatorMovement"/>
 			</or>
 			<or abstract="true" name="Targeting">
 				<feature name="GuessFactorGun"/>

@@ -15,6 +15,7 @@
 	<feature name="StopAndGo"/>
 	<feature name="ExactPathPredictorMovement"/>
 	<feature name="GuessFactorDodging"/>
+	<feature name="OscillatorMovement"/>
 	<feature name="Targeting"/>
 	<feature name="GuessFactorGun"/>
 	<feature name="HeadOnTargeting"/>

@@ -107,4 +107,8 @@ public class PropositionalFormula {
     implies(SaveMovementData, Movement) &&
     implies(SaveWaveSurfingStats, WaveSurfing) &&
     implies(SaveGuessFactor, GuessFactorGun || GuessFactorDodging);
+
+	public static void main(String[] args) {
+        System.out.println(formula);
+    }
 }
