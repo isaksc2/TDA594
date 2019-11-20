@@ -31,11 +31,9 @@
 				<feature name="StopAndGo"/>
 				<feature name="ExactPathPredictorMovement"/>
 				<feature name="GuessFactorDodging"/>
-				<alt name="OscillatorMovement">
-					<feature name="ForwardBackward"/>
-					<feature name="CopyEnemyMovement"/>
-				</alt>
+				<feature name="OscillatorMovement"/>
 				<feature name="NoMovement"/>
+				<feature name="MirrorMovement"/>
 			</or>
 			<or abstract="true" name="Targeting">
 				<feature name="GuessFactorGun"/>
