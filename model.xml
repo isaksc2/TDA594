@@ -27,6 +27,7 @@
 				<feature name="MinimumRiskMovement"/>
 				<feature name="StopAndGo"/>
 				<feature name="ExactPathPredictorMovement"/>
+				<feature name="GuessFactorDodging"/>
 			</or>
 			<or abstract="true" name="Targeting">
 				<feature name="GuessFactorGun"/>

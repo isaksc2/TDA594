@@ -89,10 +89,18 @@ public class PropositionalFormula {
     // cross tree constraints
     implies(PrecisPrediction, WaveSurfing) &&
     implies(Flattener, WaveSurfing) &&
+
     implies(Segmentation, WaveSurfing || GuessFactorGun) &&
     implies(DynamicClustering, WaveSurfing || GuessFactorGun) &&
     implies(MovementStratChange, Movement) &&
     implies(TargetingStratChange, Targeting) &&
     implies(VirtualGuns, Targeting) &&
     implies(RadarStratChange, Radar) &&
+    implies(EnergyManagement, Targeting) &&
+    implies(MatchTypeIdentification, Targeting || Movement) &&
+
+    implies(SaveTargetingData, Targeting) &&
+    implies(SaveMovementData, Movement) &&
+    implies(SaveWaveSurfingStats, WaveSurfing) &&
+    implies(SaveGuessFactor, GuessFactorGun || )
 }
