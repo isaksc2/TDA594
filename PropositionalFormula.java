@@ -83,6 +83,11 @@ public class PropositionalFormula {
         implies(DataManagement, TDA594) &&
             iff(DataManagement, SaveTargetingData || SaveMovementData || SaveGuessFactor) &&
                 implies(SaveBulletSynchronizedSnapshots, SaveTargetingData) &&
-                implies(SaveWaveSurfingStats, SaveMovementData);
+                implies(SaveWaveSurfingStats, SaveMovementData) &&
 
+    // cross tree constraints
+    implies(PrecisPrediction, WaveSurfing) &&
+    implies(Flattener, WaveSurfing) &&
+    implies(DynamicClustering, WaveSurfing || GuessFactorGun) &&
+    implies
 }
