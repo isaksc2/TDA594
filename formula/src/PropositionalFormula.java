@@ -13,11 +13,13 @@ public class PropositionalFormula {
 	static boolean RandomMovement;
 	static boolean Fluid;
 	static boolean Orbital;
+	static boolean WallSmoothing;
 	static boolean MinimumRiskMovement;
 	static boolean StopAndGo;
 	static boolean ExactPathPredictorMovement;
 	static boolean GuessFactorDodging;
 	static boolean OscillatorMovement;
+	static boolean MirrorMovement;
 
 	// Targeting
 	static boolean Targeting;
@@ -29,6 +31,8 @@ public class PropositionalFormula {
 	static boolean KDTreeTargeting;
 	static boolean RandomTargeting;
 	static boolean PatternMatching;
+	static boolean SymbolicPatternMatching;
+	static boolean FoldedPatternMatching;
 	static boolean CrowdTargeting;
 
 	// Utilities
@@ -55,6 +59,7 @@ public class PropositionalFormula {
 	static boolean SaveBulletSynchronizedSnapshots;
 	static boolean SaveMovementData;
 	static boolean SaveWaveSurfingStats;
+	static boolean SavePatternMatchingData;
 	static boolean SaveGuessFactor;
 
 	static private boolean implies(boolean x, boolean y) {
@@ -74,9 +79,9 @@ public class PropositionalFormula {
             // Movement
             implies(Movement, TDA594) &&
                 iff(Movement, WaveSurfing || PrecisePrediction || Flattener || RammingMovement || RandomMovement ||
-                        MinimumRiskMovement || StopAndGo || ExactPathPredictorMovement ||
-                        GuessFactorDodging || OscillatorMovement) &&
-                (iff(WaveSurfing, TrueSurfing || GoToSurfing )) && !(TrueSurfing && GoToSurfing ) &&
+                        WallSmoothing || MinimumRiskMovement || StopAndGo || ExactPathPredictorMovement ||
+                        GuessFactorDodging || OscillatorMovement || MirrorMovement) &&
+                ((iff(WaveSurfing, TrueSurfing || GoToSurfing )) && !(TrueSurfing && GoToSurfing )) &&
                 implies(Fluid, RandomMovement)  &&
                 implies(Orbital, RandomMovement) &&
 
@@ -85,6 +90,8 @@ public class PropositionalFormula {
                 iff(Targeting, GuessFactorGun ||HeadOnTargeting || CircularTargeting ||
                         LinearTargeting || PlayItForward || RandomTargeting || PatternMatching || CrowdTargeting) &&
                 implies(KDTreeTargeting, PlayItForward) &&
+                ((iff(PatternMatching, SymbolicPatternMatching || FoldedPatternMatching)) &&
+                !(SymbolicPatternMatching && FoldedPatternMatching)) &&
 
             // Utilities
             implies(Utilities, TDA594) &&
@@ -101,6 +108,7 @@ public class PropositionalFormula {
                 iff(DataManagement, SaveTargetingData || SaveMovementData || SaveGuessFactor) &&
                 implies(SaveBulletSynchronizedSnapshots, SaveTargetingData) &&
                 implies(SaveWaveSurfingStats, SaveMovementData) &&
+                implies(SavePatternMatchingData, SaveMovementData) &&
 
             // cross tree constraints
             // -------------------------------------------
