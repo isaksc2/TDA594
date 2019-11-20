@@ -11,6 +11,7 @@
 	<feature name="RandomMovement"/>
 	<feature name="Fluid"/>
 	<feature name="Orbital"/>
+	<feature name="WallSmoothing"/>
 	<feature name="MinimumRiskMovement"/>
 	<feature name="StopAndGo"/>
 	<feature name="MovementStratChange"/>
@@ -23,8 +24,8 @@
 	<feature name="LinearTargeting"/>
 	<feature name="TargetingStratChange"/>
 	<feature name="PlayItForward"/>
-	<feature name="RandomTargeting"/>
 	<feature name="KDTreeTargeting"/>
+	<feature name="RandomTargeting"/>
 	<feature name="PatternMatching"/>
 	<feature name="CrowdTargeting"/>
 	<feature name="Utilities"/>

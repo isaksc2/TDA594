@@ -23,6 +23,7 @@
 				<and name="RandomMovement">
 					<feature name="Fluid"/>
 					<feature name="Orbital"/>
+					<feature name="WallSmoothing"/>
 				</and>
 				<feature name="MinimumRiskMovement"/>
 				<feature name="StopAndGo"/>
@@ -36,9 +37,10 @@
 				<feature name="CircularTargeting"/>
 				<feature name="LinearTargeting"/>
 				<feature name="TargetingStratChange"/>
-				<feature name="PlayItForward"/>
+				<and name="PlayItForward">
+					<feature name="KDTreeTargeting"/>
+				</and>
 				<feature name="RandomTargeting"/>
-				<feature name="KDTreeTargeting"/>
 				<feature name="PatternMatching"/>
 				<feature name="CrowdTargeting"/>
 			</and>
