@@ -29,7 +29,6 @@
 				<feature name="ExactPathPredictorMovement"/>
 			</or>
 			<or abstract="true" name="Targeting">
-				<feature name="VirtualGuns"/>
 				<feature name="GuessFactorGun"/>
 				<feature name="HeadOnTargeting"/>
 				<feature name="CircularTargeting"/>
@@ -45,7 +44,9 @@
 				<feature name="Segmentation"/>
 				<feature name="DynamicClustering"/>
 				<feature name="MovementStratChange"/>
-				<feature name="TargetingStratChange"/>
+				<and name="TargetingStratChange">
+					<feature name="VirtualGuns"/>
+				</and>
 				<feature name="RadarStratChange"/>
 				<feature name="EnergyManagement"/>
 				<feature name="MatchTypeIdentification"/>
