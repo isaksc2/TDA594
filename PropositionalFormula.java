@@ -92,6 +92,8 @@ public class PropositionalFormula {
     implies(Flattener, WaveSurfing) &&
     implies(GuessFactorDodging, WaveSurfing) &&
 
+    implies(Targeting, Radar) &&
+
     implies(Segmentation, WaveSurfing || GuessFactorGun) &&
     implies(DynamicClustering, WaveSurfing || GuessFactorGun) &&
     implies(MovementStratChange, Movement) &&
