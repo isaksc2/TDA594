@@ -21,12 +21,12 @@
 				<feature name="PrecisePrediction"/>
 				<feature name="Flattener"/>
 				<feature name="RammingMovement"/>
-				<alt name="RandomMovement">
+				<and name="RandomMovement">
 					<graphics key="collapsed" value="false"/>
 					<feature name="Fluid"/>
 					<feature name="Orbital"/>
-					<feature name="WallSmoothing"/>
-				</alt>
+				</and>
+				<feature name="WallSmoothing"/>
 				<feature name="MinimumRiskMovement"/>
 				<feature name="StopAndGo"/>
 				<feature name="ExactPathPredictorMovement"/>
@@ -43,8 +43,8 @@
 					<feature name="KDTreeTargeting"/>
 				</and>
 				<feature name="RandomTargeting"/>
-				<alt name="PatternMatching">
-					<feature name="SybolicPatternMatching"/>
+				<alt abstract="true" name="PatternMatching">
+					<feature name="SymbolicPatternMatching"/>
 					<feature name="FoldedPatternMatching"/>
 				</alt>
 				<feature name="CrowdTargeting"/>
@@ -77,39 +77,4 @@
 			</or>
 		</and>
 	</struct>
-	<constraints>
-		<rule>
-			<imp>
-				<var>PrecisePrediction</var>
-				<var>WaveSurfing</var>
-			</imp>
-		</rule>
-		<rule>
-			<imp>
-				<var>SaveGuessFactor</var>
-				<disj>
-					<var>SaveMovementData</var>
-					<var>SaveTargetingData</var>
-				</disj>
-			</imp>
-		</rule>
-		<rule>
-			<imp>
-				<var>MovementStratChange</var>
-				<var>Movement</var>
-			</imp>
-		</rule>
-		<rule>
-			<imp>
-				<var>TargetingStratChange</var>
-				<var>Targeting</var>
-			</imp>
-		</rule>
-		<rule>
-			<imp>
-				<var>RadarStratChange</var>
-				<var>Radar</var>
-			</imp>
-		</rule>
-	</constraints>
 </featureModel>
