@@ -16,6 +16,7 @@ public class PropositionalFormula {
 	boolean StopAndGo;
 	boolean ExactPathPredictorMovement;
 	boolean GuessFactorDodging;
+	boolean OscillatorMovement;
 	
 	boolean Targeting;
 	boolean VirtualGuns;
@@ -64,7 +65,8 @@ public class PropositionalFormula {
         // dependencies shown in the model, indentation means 1 level down
         implies(Movement, TDA594) &&
             iff(Movement, WaveSurfing || PrecisPrediction || Flattener || RammingMovement || RandomMovement ||
-            MinimumRiskMovement || StopAndGo || ExactPathPredictorMovement || GuessFactorDodging) &&
+            MinimumRiskMovement || StopAndGo || ExactPathPredictorMovement ||
+            GuessFactorDodging || OscillatorMovement) &&
                 (iff(WaveSurfing, TrueSurfing || GoToSurfing )) && !(TrueSurfing && GoToSurfing ) &&
                 implies(Fluid, RandomMovement)  &&
                 implies(Orbital, RandomMovement) &&
