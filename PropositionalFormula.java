@@ -15,6 +15,7 @@ public class PropositionalFormula {
 	boolean MinimumRiskMovement;
 	boolean StopAndGo;
 	boolean ExactPathPredictorMovement;
+	boolean GuessFactorDodging;
 	
 	boolean Targeting;
 	boolean VirtualGuns;
@@ -63,10 +64,10 @@ public class PropositionalFormula {
         // dependencies shown in the model, indentation means 1 level down
         implies(Movement, TDA594) &&
             iff(Movement, WaveSurfing || PrecisPrediction || Flattener || RammingMovement || RandomMovement ||
-            MinimumRiskMovement || StopAndGo || ExactPathPredictorMovement) &&
+            MinimumRiskMovement || StopAndGo || ExactPathPredictorMovement || GuessFactorDodging) &&
                 (iff(WaveSurfing, TrueSurfing || GoToSurfing )) && !(TrueSurfing && GoToSurfing ) &&
                 implies(Fluid, RandomMovement)  &&
-                implies(Orbital, RandomMovement)&&
+                implies(Orbital, RandomMovement) &&
 
         implies(Targeting, TDA594) &&
             iff(Targeting, GuessFactorGun ||HeadOnTargeting || CircularTargeting ||
@@ -89,6 +90,7 @@ public class PropositionalFormula {
     // cross tree constraints
     implies(PrecisPrediction, WaveSurfing) &&
     implies(Flattener, WaveSurfing) &&
+    implies(GuessFactorDodging, WaveSurfing) &&
 
     implies(Segmentation, WaveSurfing || GuessFactorGun) &&
     implies(DynamicClustering, WaveSurfing || GuessFactorGun) &&
@@ -102,5 +104,5 @@ public class PropositionalFormula {
     implies(SaveTargetingData, Targeting) &&
     implies(SaveMovementData, Movement) &&
     implies(SaveWaveSurfingStats, WaveSurfing) &&
-    implies(SaveGuessFactor, GuessFactorGun || )
+    implies(SaveGuessFactor, GuessFactorGun || GuessFactorDodging);
 }
