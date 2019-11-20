@@ -32,7 +32,6 @@
 				<feature name="ExactPathPredictorMovement"/>
 				<feature name="GuessFactorDodging"/>
 				<feature name="OscillatorMovement"/>
-				<feature name="NoMovement"/>
 				<feature name="MirrorMovement"/>
 			</or>
 			<or abstract="true" name="Targeting">
@@ -44,12 +43,11 @@
 					<feature name="KDTreeTargeting"/>
 				</and>
 				<feature name="RandomTargeting"/>
-				<or name="PatternMatching">
+				<alt name="PatternMatching">
 					<feature name="SybolicPatternMatching"/>
 					<feature name="FoldedPatternMatching"/>
-				</or>
+				</alt>
 				<feature name="CrowdTargeting"/>
-				<feature name="NoFire"/>
 			</or>
 			<or abstract="true" name="Utilities">
 				<feature name="Segmentation"/>
@@ -76,7 +74,6 @@
 					<feature name="SavePatternMatchingData"/>
 				</and>
 				<feature name="SaveGuessFactor"/>
-				<feature name="SaveNothing"/>
 			</or>
 		</and>
 	</struct>
