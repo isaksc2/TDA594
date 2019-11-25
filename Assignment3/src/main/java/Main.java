@@ -23,22 +23,22 @@ public class Main {
             boolean unsat = true;
 
             IProblem problem = reader.parseInstance(Main.class.getClassLoader().getResourceAsStream("ecos_x86.dimacs"));
-            problem.model();
+
             if (problem.isSatisfiable()) {
+                System.out.println("Problem is satisfiable!");
                 //int[] model = problem.model();
                 System.out.println(problem.nVars());
-
+                int numDeadFeatures = 0;
                 for (int i = 1; i < problem.nVars() + 1; i++) {
                     int[] a = {i};
                     IVecInt assumptions = new VecInt(a);
                     //System.out.println(i + " ");
-                    if (problem.isSatisfiable(assumptions)) {
-                        System.out.println(i + ": satisfied");
-                    }
-                    else {
+                    if (!problem.isSatisfiable(assumptions)) {
+                        numDeadFeatures++;
                         System.out.println(i + ": not satisfied");
                     }
                 }
+                System.out.println("There are " + numDeadFeatures + " dead features!");
             }
 //            while (problem.isSatisfiable(assumptions)) {
 //                //solver.add
