@@ -2,7 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="30efe52e-2422-4f4c-986d-c2ed0317a40a" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.gradle/4.10/fileContent/fileContent.lock" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.gradle/4.10/javaCompile/classAnalysis.bin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.gradle/4.10/javaCompile/javaCompile.lock" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.gradle/4.10/javaCompile/taskHistory.bin" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/classes/java/main/Main.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/resources/main/ecos_x86.dimacs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/resources/main/small.dimacs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/resources/main/test_dead.dimacs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/resources/main/test_no_dead.dimacs" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/resources/test_dead.dimacs" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/resources/test_no_dead.dimacs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.10/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.10/fileHashes/fileHashes.bin" afterDir="false" />

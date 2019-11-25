@@ -18,26 +18,27 @@ public class Main {
         solver.setTimeout(3600); // 1 hour timeout
         Reader reader = new DimacsReader(solver);
 
-        int[] a = {-1, -2, 3};
-        IVecInt assumptions = new VecInt(a);
+
         try {
             boolean unsat = true;
 
-            IProblem problem = reader.parseInstance(Main.class.getClassLoader().getResourceAsStream("small.dimacs"));
+            IProblem problem = reader.parseInstance(Main.class.getClassLoader().getResourceAsStream("ecos_x86.dimacs"));
+            problem.model();
             if (problem.isSatisfiable()) {
-                int[] model = problem.model();
-                for (int i : model) {
-                    System.out.print(i + " ");
+                //int[] model = problem.model();
+                System.out.println(problem.nVars());
 
+                for (int i = 1; i < problem.nVars() + 1; i++) {
+                    int[] a = {i};
+                    IVecInt assumptions = new VecInt(a);
+                    //System.out.println(i + " ");
                     if (problem.isSatisfiable(assumptions)) {
-                        System.out.println("satisfied");
+                        System.out.println(i + ": satisfied");
                     }
                     else {
-                        System.out.println("not satisfied");
+                        System.out.println(i + ": not satisfied");
                     }
                 }
-                System.out.println();
-
             }
 //            while (problem.isSatisfiable(assumptions)) {
 //                //solver.add
