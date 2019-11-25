@@ -17,19 +17,41 @@ public class Main {
         ModelIterator mi = new ModelIterator(solver);
         solver.setTimeout(3600); // 1 hour timeout
         Reader reader = new DimacsReader(solver);
-        // filename is given on the command line
+
+        int[] a = {-1, -2, 3};
+        IVecInt assumptions = new VecInt(a);
         try {
             boolean unsat = true;
-            IProblem problem = reader.parseInstance(Main.class.getClassLoader().getResourceAsStream("ecos_x86.dimacs"));
-            while (problem.isSatisfiable(VecInt assumps = new VecInt())) {
-                unsat = false;
-                int [] model = problem.model();
-                // do something with each model
+
+            IProblem problem = reader.parseInstance(Main.class.getClassLoader().getResourceAsStream("small.dimacs"));
+            if (problem.isSatisfiable()) {
+                int[] model = problem.model();
+                for (int i : model) {
+                    System.out.print(i + " ");
+
+                    if (problem.isSatisfiable(assumptions)) {
+                        System.out.println("satisfied");
+                    }
+                    else {
+                        System.out.println("not satisfied");
+                    }
+                }
+                System.out.println();
+
             }
-            if (unsat) {
-                System.out.println("Unsatisfiable !");
-                // do something for unsat case
-            }
+//            while (problem.isSatisfiable(assumptions)) {
+//                //solver.add
+//                unsat = false;
+//                int[] model = problem.model();
+//                for (int i : model) {
+//                    System.out.print(i + " ");
+//                }
+//                System.out.println();
+//            }
+//            if (unsat) {
+//                System.out.println("Unsatisfiable !");
+//                // do something for unsat case
+//            }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (ParseFormatException e) {
