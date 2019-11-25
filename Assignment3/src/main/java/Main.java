@@ -22,17 +22,18 @@ public class Main {
         try {
             boolean unsat = true;
 
-            IProblem problem = reader.parseInstance(Main.class.getClassLoader().getResourceAsStream("ecos_x86.dimacs"));
+            IProblem problem = reader.parseInstance(Main.class.getClassLoader().getResourceAsStream("small.dimacs"));
 
             if (problem.isSatisfiable()) {
                 System.out.println("Problem is satisfiable!");
                 //int[] model = problem.model();
-                System.out.println(problem.nVars());
+                System.out.println("There are " + problem.nVars() + " variables!");
                 int numDeadFeatures = 0;
+
+                // Loop over all variables.
                 for (int i = 1; i < problem.nVars() + 1; i++) {
-                    int[] a = {i};
+                    int[] a = {i}; // set the current feature to be enabled (true)
                     IVecInt assumptions = new VecInt(a);
-                    //System.out.println(i + " ");
                     if (!problem.isSatisfiable(assumptions)) {
                         numDeadFeatures++;
                         System.out.println(i + ": not satisfied");
