@@ -7,10 +7,14 @@ import org.sat4j.reader.Reader;
 import org.sat4j.specs.*;
 import org.sat4j.tools.ModelIterator;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.io.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Scanner;
 
 public class Main {
+    static String filename = "ecos_x86.dimacs";
 
     public static void main(String[] args){
         ISolver solver = SolverFactory.newDefault();
@@ -22,21 +26,21 @@ public class Main {
         try {
             boolean unsat = true;
 
-            IProblem problem = reader.parseInstance(Main.class.getClassLoader().getResourceAsStream("small.dimacs"));
-
+            IProblem problem = reader.parseInstance(Main.class.getClassLoader().getResourceAsStream(filename));
             if (problem.isSatisfiable()) {
                 System.out.println("Problem is satisfiable!");
                 //int[] model = problem.model();
                 System.out.println("There are " + problem.nVars() + " variables!");
                 int numDeadFeatures = 0;
-
+                HashMap<Integer, String> names = findNames();
                 // Loop over all variables.
+                System.out.println("Dead features: ");
                 for (int i = 1; i < problem.nVars() + 1; i++) {
                     int[] a = {i}; // set the current feature to be enabled (true)
                     IVecInt assumptions = new VecInt(a);
                     if (!problem.isSatisfiable(assumptions)) {
                         numDeadFeatures++;
-                        System.out.println(i + ": not satisfied");
+                        System.out.println(i + " " + names.get(i));
                     }
                 }
                 System.out.println("There are " + numDeadFeatures + " dead features!");
@@ -65,5 +69,23 @@ public class Main {
         } catch (TimeoutException e) {
             System.out.println("Timeout, sorry!");
         }
+    }
+
+    static  HashMap<Integer, String> findNames() {
+        HashMap<Integer, String> names = new HashMap<Integer, String>();
+        InputStream stream = Main.class.getClassLoader().getResourceAsStream(filename);
+        Scanner sc = new Scanner(stream);
+        while (sc.hasNext()) {
+            String line = sc.nextLine();
+            if (line.startsWith("c")) {
+                String[] components = line.split(" ");
+                names.put(Integer.parseInt(components[1]), components[2]);
+            }
+            else {
+                break;
+            }
+        }
+
+        return names;
     }
 }
