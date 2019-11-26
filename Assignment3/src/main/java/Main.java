@@ -14,22 +14,19 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Main {
-    static String filename = "small.dimacs";
+    static String filename = "ecos_x86.dimacs";
+    static ISolver solver;
+    static Reader reader;
 
     public static void main(String[] args){
-        ISolver solver = SolverFactory.newDefault();
-        ModelIterator mi = new ModelIterator(solver);
+        solver = SolverFactory.newDefault();
         solver.setTimeout(3600); // 1 hour timeout
-        Reader reader = new DimacsReader(solver);
-
+        reader = new DimacsReader(solver);
 
         try {
-            boolean unsat = true;
-
             IProblem problem = reader.parseInstance(Main.class.getClassLoader().getResourceAsStream(filename));
             if (problem.isSatisfiable()) {
                 System.out.println("Problem is satisfiable!");
-                //int[] model = problem.model();
                 System.out.println("There are " + problem.nVars() + " variables!");
                 int numDeadFeatures = 0;
                 HashMap<Integer, String> names = findNames();
@@ -46,20 +43,9 @@ public class Main {
                     }
                 }
                 System.out.println("There are " + numDeadFeatures + " dead features!");
+                findImplications(problem, names);
             }
-//            while (problem.isSatisfiable(assumptions)) {
-//                //solver.add
-//                unsat = false;
-//                int[] model = problem.model();
-//                for (int i : model) {
-//                    System.out.print(i + " ");
-//                }
-//                System.out.println();
-//            }
-//            if (unsat) {
-//                System.out.println("Unsatisfiable !");
-//                // do something for unsat case
-//            }
+//
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (ParseFormatException e) {
@@ -71,6 +57,54 @@ public class Main {
         } catch (TimeoutException e) {
             System.out.println("Timeout, sorry!");
         }
+    }
+
+    static void findImplications(IProblem problem, HashMap<Integer, String > variables) throws FileNotFoundException, ParseFormatException,
+            IOException, ContradictionException, TimeoutException{
+        List<Integer> vars = new ArrayList<>();
+        vars.addAll(variables.keySet());
+        List<int[]> implications = new ArrayList<>();
+        for (int var1 : vars){
+            for(int iVar2=vars.indexOf(var1); iVar2<vars.size(); iVar2++){
+                int[] a = {var1};
+                int[] b = {vars.get(iVar2)};// SS = S
+                IVecInt assumptions = new VecInt(a);
+                boolean A = problem.isSatisfiable(assumptions);
+                assumptions = new VecInt(b);
+                boolean B = problem.isSatisfiable(assumptions);
+                if(!A || B){
+                    int[] pair = {a[0], b[0]};
+                    implications.add(pair);
+                }
+                if(!B || A){
+                    int[] pair = {b[0], a[0]};
+                    implications.add(pair);
+                }
+                /*count++;
+                int[] a = {var1, vars.get(iVar2)};    // SS = S
+                IVecInt assumptions = new VecInt(a);
+                boolean ss = problem.isSatisfiable(assumptions);
+                a[1] = -a[1];          // SF = S
+                assumptions = new VecInt(a);
+                boolean sf = problem.isSatisfiable(assumptions);
+                a[0] = -a[0];      // FF = S
+                assumptions = new VecInt(a);
+                boolean ff = problem.isSatisfiable(assumptions);
+                a[1] = -a[1];         // FS = F
+                assumptions = new VecInt(a);
+                boolean fs = problem.isSatisfiable(assumptions);
+                if(ss && fs && ff && !sf){
+                    int[] pair = {a[0], -a[1]};
+                    implications.add(pair);
+                }
+                if(ss && sf && ff && !fs){
+                    int[] pair = {-a[1], a[0]};
+                    implications.add(pair);
+                }
+                */
+            }
+        }
+        System.out.println(implications.size());
     }
 
     static  HashMap<Integer, String> findNames() {
@@ -87,7 +121,6 @@ public class Main {
                 break;
             }
         }
-
         return names;
     }
 }
