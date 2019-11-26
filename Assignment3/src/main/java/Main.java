@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Main {
-    static String filename = "ecos_x86.dimacs";
+    static String filename = "small.dimacs";
 
     public static void main(String[] args){
         ISolver solver = SolverFactory.newDefault();
@@ -35,12 +35,14 @@ public class Main {
                 HashMap<Integer, String> names = findNames();
                 // Loop over all variables.
                 System.out.println("Dead features: ");
-                for (int i = 1; i < problem.nVars() + 1; i++) {
-                    int[] a = {i}; // set the current feature to be enabled (true)
+                int[] vars = problem.model();
+                for (int var : vars) {
+                    var = Math.abs(var);
+                    int[] a = {var}; // set the current feature to be enabled (true)
                     IVecInt assumptions = new VecInt(a);
                     if (!problem.isSatisfiable(assumptions)) {
                         numDeadFeatures++;
-                        System.out.println(i + " " + names.get(i));
+                        System.out.println(var + " " + names.get(var));
                     }
                 }
                 System.out.println("There are " + numDeadFeatures + " dead features!");
