@@ -1,27 +1,25 @@
 import org.sat4j.core.VecInt;
 import org.sat4j.minisat.SolverFactory;
 import org.sat4j.reader.DimacsReader;
-import org.sat4j.reader.InstanceReader;
 import org.sat4j.reader.ParseFormatException;
 import org.sat4j.reader.Reader;
 import org.sat4j.specs.*;
-import org.sat4j.tools.ModelIterator;
 
+import java.util.*;
 import java.io.*;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Scanner;
 
 public class Main {
-    static String filename = "ecos_x86.dimacs";
+    static String filename = "small.dimacs";
     static ISolver solver;
     static Reader reader;
+    static WriteToFile writer;
+    static List<int[]> implications = new ArrayList<>();
 
     public static void main(String[] args){
         solver = SolverFactory.newDefault();
         solver.setTimeout(3600); // 1 hour timeout
         reader = new DimacsReader(solver);
+        writer = new WriteToFile();
 
         try {
             IProblem problem = reader.parseInstance(Main.class.getClassLoader().getResourceAsStream(filename));
@@ -59,28 +57,31 @@ public class Main {
         }
     }
 
-    static void findImplications(IProblem problem, HashMap<Integer, String > variables) throws FileNotFoundException, ParseFormatException,
+    static void findImplications(IProblem problem, HashMap<Integer, String > nameMap) throws FileNotFoundException, ParseFormatException,
             IOException, ContradictionException, TimeoutException{
         List<Integer> vars = new ArrayList<>();
-        vars.addAll(variables.keySet());
-        List<int[]> implications = new ArrayList<>();
+        vars.addAll(nameMap.keySet());
         for (int var1 : vars){
             for(int iVar2=vars.indexOf(var1); iVar2<vars.size(); iVar2++){
-                int[] a = {var1};
-                int[] b = {vars.get(iVar2)};// SS = S
-                IVecInt assumptions = new VecInt(a);
-                boolean A = problem.isSatisfiable(assumptions);
-                assumptions = new VecInt(b);
-                boolean B = problem.isSatisfiable(assumptions);
-                if(!A || B){
-                    int[] pair = {a[0], b[0]};
+                int a = var1;
+                int b = vars.get(iVar2);
+                IVecInt testassump = new VecInt();
+                testassump.push(a);
+                testassump.push(-b);
+                Boolean test = problem.isSatisfiable(testassump);
+                if(test){
+                    int[] pair = {b,a };
                     implications.add(pair);
                 }
-                if(!B || A){
-                    int[] pair = {b[0], a[0]};
-                    implications.add(pair);
+                IVecInt testassump2 = new VecInt();
+                testassump2.push(-a);
+                testassump2.push(b);
+                Boolean test2 = problem.isSatisfiable(testassump);
+                if(test2){
+                    int[] pair2 = {a, b};
+                    implications.add(pair2);
                 }
-                /*count++;
+                /*
                 int[] a = {var1, vars.get(iVar2)};    // SS = S
                 IVecInt assumptions = new VecInt(a);
                 boolean ss = problem.isSatisfiable(assumptions);
@@ -100,11 +101,22 @@ public class Main {
                 if(ss && sf && ff && !fs){
                     int[] pair = {-a[1], a[0]};
                     implications.add(pair);
-                }
-                */
+                }*/
             }
         }
         System.out.println(implications.size());
+        writeImplicationsToFile(nameMap);
+
+    }
+    static void writeImplicationsToFile(HashMap<Integer, String > nameMap){
+        StringBuilder stringToWrite = new StringBuilder();
+        Iterator it = implications.iterator();
+        while(it.hasNext()) {
+            int[] item = (int[]) it.next();
+            stringToWrite.append("{" + nameMap.get(item[0]) + " ==> " + nameMap.get(item[1]) + "}" + "\n");
+            writer.WriteText(stringToWrite.toString());
+        }
+        System.out.println("Implications written");
     }
 
     static  HashMap<Integer, String> findNames() {
