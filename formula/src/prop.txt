@@ -4,6 +4,17 @@
     (~Radar | TDA594) &
     (~Radar | TurnMultiplier | InfinityLock | SpinRadar) & (~TurnMultiplier | Radar) & (~InfinityLock | Radar) & (~SpinRadar | Radar) &
 
+            // DataManagement
+
+           (~DataManagement | TDA594) &
+           (~DataManagement | SaveTargetingdata | SaveMovementData | SaveGuessFactor) &
+           (~SaveTargetingdata | DataManagement) &
+           (~SaveMovementData | DataManagement) &
+           (~SaveGuessFactor | DataManagement) &
+           (~SaveBulletSynchronizedSnapshots | SaveTargetingData) &
+           (~SaveWaveSurfingStats | SaveMovementData) &
+           (~SavePatternMatchingData | SaveMovementData)
+
 
              // cross tree constraints
             // -------------------------------------------
