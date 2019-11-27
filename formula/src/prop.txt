@@ -21,7 +21,6 @@
             (~DynamicClustering | ( WaveSurfing | GuessFactorGu)) &
             (~MovementStratChange | Movement) &
             (~TargetingStratChange | Targeting) &
-            (~VirtualGuns | Targeting) &
             (~RadarStratChange | Radar) &
             (~EnergyManagement | Targeting) &
             (~MatchTypeIdentification | ( Targeting | Movement)) &
