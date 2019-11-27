@@ -4,10 +4,10 @@
 		<graphics key="showhiddenfeatures" value="true"/>
 		<graphics key="legendautolayout" value="true"/>
 		<graphics key="showshortnames" value="false"/>
-		<graphics key="layout" value="horizontal"/>
+		<graphics key="layout" value="vertical"/>
 		<graphics key="showcollapsedconstraints" value="true"/>
 		<graphics key="legendhidden" value="false"/>
-		<graphics key="layoutalgorithm" value="1"/>
+		<graphics key="layoutalgorithm" value="4"/>
 	</properties>
 	<struct>
 		<and abstract="true" mandatory="true" name="TDA594">
@@ -77,4 +77,108 @@
 			</or>
 		</and>
 	</struct>
+	<constraints>
+		<rule>
+			<imp>
+				<var>PrecisePrediction</var>
+				<var>WaveSurfing</var>
+			</imp>
+		</rule>
+		<rule>
+			<imp>
+				<var>Flattener</var>
+				<var>WaveSurfing</var>
+			</imp>
+		</rule>
+		<rule>
+			<imp>
+				<var>GuessFactorDodging</var>
+				<var>WaveSurfing</var>
+			</imp>
+		</rule>
+		<rule>
+			<imp>
+				<var>Targeting</var>
+				<var>Radar</var>
+			</imp>
+		</rule>
+		<rule>
+			<imp>
+				<var>Segmentation</var>
+				<disj>
+					<var>WaveSurfing</var>
+					<var>GuessFactorGun</var>
+				</disj>
+			</imp>
+		</rule>
+		<rule>
+			<imp>
+				<var>DynamicClustering</var>
+				<disj>
+					<var>WaveSurfing</var>
+					<var>GuessFactorGun</var>
+				</disj>
+			</imp>
+		</rule>
+		<rule>
+			<imp>
+				<var>MovementStratChange</var>
+				<var>Movement</var>
+			</imp>
+		</rule>
+		<rule>
+			<imp>
+				<var>TargetingStratChange</var>
+				<var>Targeting</var>
+			</imp>
+		</rule>
+		<rule>
+			<imp>
+				<var>RadarStratChange</var>
+				<var>Radar</var>
+			</imp>
+		</rule>
+		<rule>
+			<imp>
+				<var>EnergyManagement</var>
+				<var>Targeting</var>
+			</imp>
+		</rule>
+		<rule>
+			<imp>
+				<var>MatchTypeIdentification</var>
+				<disj>
+					<var>Targeting</var>
+					<var>Movement</var>
+				</disj>
+			</imp>
+		</rule>
+		<rule>
+			<imp>
+				<var>SaveTargetingData</var>
+				<var>Targeting</var>
+			</imp>
+		</rule>
+		<rule>
+			<imp>
+				<var>SaveMovementData</var>
+				<var>Movement</var>
+			</imp>
+		</rule>
+		<rule>
+			<imp>
+				<var>SaveWaveSurfingStats</var>
+				<var>WaveSurfing</var>
+			</imp>
+		</rule>
+		<rule>
+			<imp>
+				<var>SaveGuessFactor</var>
+				<disj>
+					<var>GuessFactorGun</var>
+					<var>GuessFactorDodging</var>
+				</disj>
+			</imp>
+		</rule>
+	</constraints>
 </featureModel>

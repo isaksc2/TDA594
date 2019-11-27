@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="a1bf5a59-80fd-40e5-bb86-3fa74d198ea0" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/../formula/src/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../formula/src/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../model.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../model.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -28,6 +29,11 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="676" />
+    <option name="width" value="697" />
+    <option name="height" value="735" />
   </component>
   <component name="ProjectId" id="1U6MmkR1K5Ub4ddrDBFmKQKcMns" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
