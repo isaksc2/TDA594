@@ -69,7 +69,7 @@ public class Main {
         List<Integer> vars = new ArrayList<>();
         vars.addAll(nameMap.keySet());
         for (int var1 : vars){
-            for(int iVar2=vars.indexOf(var1); iVar2<vars.size(); iVar2++){
+            for(int iVar2=vars.indexOf(var1)+1; iVar2<vars.size(); iVar2++){
                 int a = var1;
                 int b = vars.get(iVar2);
 
