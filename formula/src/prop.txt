@@ -1,5 +1,54 @@
  TDA594 &
- Movement => TDA594 & Movement <=> (WaveSurfing | PrecisePrediction | Flattener | RammingMovement | RandomMovement | WallSmoothing | MinimumRiskMovement | StopAndGo | ExactPathPredictorMovement | GuessFactorDodging | OscillatorMovement | MirrorMovement) & (WaveSurfing <=> (TrueSurfing | GoToSurfing) & ~(TrueSurfing & GoToSurfing)) & Fluid => RandomMovement & Orbital => RandomMovement
+(~Movement | TDA594) &
+(~Movement | WaveSurfing | PrecisePrediction | Flattener | RammingMovement | RandomMovement | WallSmoothing | MinimumRiskMovement | StopAndGo | ExactPathPredictorMovement | GuessFactorDodging | OscillatorMovement | MirrorMovement) & 
+(~WaveSurfing | Movement) & 
+(~PrecisePrediction | Movement) & 
+(~Flattener | Movement) & 
+(~RammingMovement | Movement) & 
+(~RandomMovement | Movement) & 
+(~WallSmoothing | Movement) & 
+(~MinimumRiskMovement | Movement) & 
+(~StopAndGo | Movement) & 
+(~ExactPathPredictorMovement | Movement) & 
+(~GuessFactorDodging | Movement) & 
+(~OscillatorMovement | Movement) & 
+(~MirrorMovement | Movement) &
+(~WaveSurfing | TrueSurfing | GoToSurfing) & 
+(~WaveSurfing | ~TrueSurfing | ~GoToSurfing) & 
+(~TrueSurfing | TrueSurfing | WaveSurfing) & 
+(~TrueSurfing | GoToSurfing | WaveSurfing) & 
+(~GoToSurfing | TrueSurfing | WaveSurfing) & 
+(~GoToSurfing | GoToSurfing | WaveSurfing) &
+(~Fluid | ~RandomMovement | ~Orbital | RandomMovement) &
+
+(~Targeting | TDA594) &
+(~Targeting | GuessFactorGun | HeadOnTargeting | CircularTargeting | LinearTargeting | PlayItForward | RandomTargeting | PatternMatching | CrowdTargeting) &
+(~GuessFactorGun | Targeting) & 
+(~HeadOnTargeting | Targeting) & 
+(~CircularTargeting | Targeting) & 
+(~LinearTargeting | Targeting) & 
+(~PlayItForward | Targeting) & 
+(~RandomTargeting | Targeting) & 
+(~PatternMatching | Targeting) & 
+(~CrowdTargeting | Targeting) &
+(~KDTreeTargeting | PlayItForward) &
+(~PatternMatching | SymbolicPatternMatching | FoldedPatternMatching) & 
+(~PatternMatching | ~SymbolicPatternMatching | ~FoldedPatternMatching) & 
+(~SymbolicPatternMatching | SymbolicPatternMatching | PatternMatching) & 
+(~SymbolicPatternMatching | FoldedPatternMatching | PatternMatching) & 
+(~FoldedPatternMatching | SymbolicPatternMatching | PatternMatching) & 
+(~FoldedPatternMatching | FoldedPatternMatching | PatternMatching) &
+
+(~Utilities | TDA594) &
+(~Utilities | Segmentation | DynamicClustering | MovementStratChange | TargetingStratChange | RadarStratChange | EnergyManagement | MatchTypeIdentification) & 
+(~Segmentation | Utilities) & 
+(~DynamicClustering | Utilities) & 
+(~MovementStratChange | Utilities) & 
+(~TargetingStratChange | Utilities) & 
+(~RadarStratChange | Utilities) & 
+(~EnergyManagement | Utilities) & 
+(~MatchTypeIdentification | Utilities) &
+(~VirtualGuns | TargetingStratChange)
 
     (~Radar | TDA594) &
     (~Radar | TurnMultiplier | InfinityLock | SpinRadar) & (~TurnMultiplier | Radar) & (~InfinityLock | Radar) & (~SpinRadar | Radar) &

@@ -64,47 +64,24 @@ public class Main {
         List<Integer> vars = new ArrayList<>();
         vars.addAll(variables.keySet());
         List<int[]> implications = new ArrayList<>();
+        int count = 0;
         for (int var1 : vars){
-            for(int iVar2=vars.indexOf(var1); iVar2<vars.size(); iVar2++){
-                int[] a = {var1};
-                int[] b = {vars.get(iVar2)};// SS = S
-                IVecInt assumptions = new VecInt(a);
-                boolean A = problem.isSatisfiable(assumptions);
-                assumptions = new VecInt(b);
-                boolean B = problem.isSatisfiable(assumptions);
-                if(!A || B){
-                    int[] pair = {a[0], b[0]};
+            for (int var2 : vars) {
+                if (var1 == var2) {
+                    continue;
+                }
+                IVecInt assumptions = new VecInt();
+                assumptions.push(var1);
+                assumptions.push(-var2);
+                boolean tf = problem.isSatisfiable(assumptions);
+                if (!tf) {
+                    int[] pair = {var1, var2};
                     implications.add(pair);
                 }
-                if(!B || A){
-                    int[] pair = {b[0], a[0]};
-                    implications.add(pair);
-                }
-                /*count++;
-                int[] a = {var1, vars.get(iVar2)};    // SS = S
-                IVecInt assumptions = new VecInt(a);
-                boolean ss = problem.isSatisfiable(assumptions);
-                a[1] = -a[1];          // SF = S
-                assumptions = new VecInt(a);
-                boolean sf = problem.isSatisfiable(assumptions);
-                a[0] = -a[0];      // FF = S
-                assumptions = new VecInt(a);
-                boolean ff = problem.isSatisfiable(assumptions);
-                a[1] = -a[1];         // FS = F
-                assumptions = new VecInt(a);
-                boolean fs = problem.isSatisfiable(assumptions);
-                if(ss && fs && ff && !sf){
-                    int[] pair = {a[0], -a[1]};
-                    implications.add(pair);
-                }
-                if(ss && sf && ff && !fs){
-                    int[] pair = {-a[1], a[0]};
-                    implications.add(pair);
-                }
-                */
             }
         }
         System.out.println(implications.size());
+        System.out.println(count);
     }
 
     static  HashMap<Integer, String> findNames() {
@@ -116,9 +93,6 @@ public class Main {
             if (line.startsWith("c")) {
                 String[] components = line.split(" ");
                 names.put(Integer.parseInt(components[1]), components[2]);
-            }
-            else {
-                break;
             }
         }
         return names;
