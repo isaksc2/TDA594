@@ -9,7 +9,7 @@ import java.util.*;
 import java.io.*;
 
 public class Main {
-    static String filename = "small.dimacs";
+    static String filename = "ecos_x86.dimacs";
     static ISolver solver;
     static Reader reader;
     static List<int[]> implications = new ArrayList<>();
@@ -72,28 +72,26 @@ public class Main {
             for(int iVar2=vars.indexOf(var1); iVar2<vars.size(); iVar2++){
                 int a = var1;
                 int b = vars.get(iVar2);
-                //Add a and -b to an vecInt
-                IVecInt bImpavec = new VecInt();
-                bImpavec.push(a);
-                bImpavec.push(-b);
 
-                //Check if b implies a and if it does adds it to a list with pairs of implications
-                Boolean bImpa = problem.isSatisfiable(bImpavec);
-                if(bImpa){
-                    int[] pair = {b,a };
+                // SF = S
+                IVecInt assumptions2 = new VecInt();
+                assumptions2.push(a);
+                assumptions2.push(-b);
+                boolean sf = problem.isSatisfiable(assumptions2);
+
+                // FS = F
+                IVecInt assumptions4 = new VecInt();
+                assumptions4.push(-a);
+                assumptions4.push(b);
+                boolean fs = problem.isSatisfiable(assumptions4);
+
+                if(!sf){
+                    int[] pair = {a, b};
                     implications.add(pair);
                 }
-
-                //Add b and -a to an vecInt
-                IVecInt aImpbvec = new VecInt();
-                aImpbvec.push(-a);
-                aImpbvec.push(b);
-
-                //Check if a implies b and if it does adds it to a list with pairs of implications
-                Boolean aImpb = problem.isSatisfiable(aImpbvec);
-                if(aImpb){
-                    int[] pair2 = {a, b};
-                    implications.add(pair2);
+                if(!fs){
+                    int[] pair = {b, a};
+                    implications.add(pair);
                 }
             }
         }
