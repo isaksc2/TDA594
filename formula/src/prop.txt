@@ -1,1 +1,29 @@
  Movement => TDA594 & Movement <=> (WaveSurfing | PrecisePrediction | Flattener | RammingMovement | RandomMovement | WallSmoothing | MinimumRiskMovement | StopAndGo | ExactPathPredictorMovement | GuessFactorDodging | OscillatorMovement | MirrorMovement) & (WaveSurfing <=> (TrueSurfing | GoToSurfing) & ~(TrueSurfing & GoToSurfing)) & Fluid => RandomMovement & Orbital => RandomMovement
+
+
+             // cross tree constraints
+            // -------------------------------------------
+
+            // Movement
+            ~PrecisePrediction | WaveSurfing &
+            ~Flattener | WaveSurfing &
+            ~GuessFactorDodging | WaveSurfing &
+
+            // Targeting
+            ~Targeting | Radar &
+
+            // Utilities
+            ~Segmentation |  (WaveSurfing | GuessFactorGun) &
+            ~DynamicClustering | ( WaveSurfing | GuessFactorGu) &
+            ~MovementStratChange | Movement &
+            ~TargetingStratChange | Targeting &
+            ~VirtualGuns | Targeting &
+            ~RadarStratChange | Radar &
+            ~EnergyManagement | Targeting &
+            ~MatchTypeIdentification | ( Targeting | Movement) &
+
+            // DataManagement
+            ~SaveTargetingData | Targeting &
+            ~SaveMovementData | Movement &
+            ~SaveWaveSurfingStats | WaveSurfing &
+            ~SaveGuessFactor | ( GuessFactorGun | GuessFactorDodging)
