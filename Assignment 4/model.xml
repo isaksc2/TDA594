@@ -10,9 +10,20 @@
 		<graphics key="layoutalgorithm" value="1"/>
 	</properties>
 	<struct>
-		<and abstract="true" mandatory="true" name="Assignment4">
-			<and name="Base">
-				<feature name="GuessFactorGun"/>
+		<and abstract="true" mandatory="true" name="Tank">
+			<graphics key="collapsed" value="false"/>
+			<and abstract="true" name="Targeting">
+				<graphics key="collapsed" value="false"/>
+				<feature mandatory="true" name="GuessFactorGun"/>
+			</and>
+			<alt abstract="true" mandatory="true" name="Movement">
+				<and name="WaveSurfing">
+					<feature name="WaveDebugging"/>
+				</and>
+				<feature name="RandomOrbitalMovement"/>
+			</alt>
+			<and abstract="true" name="Utilties">
+				<feature name="ColorBlueBlackYellow"/>
 			</and>
 		</and>
 	</struct>

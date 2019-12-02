@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <configuration>
-	<feature automatic="selected" name="Assignment4"/>
-	<feature automatic="selected" manual="selected" name="Base"/>
-	<feature manual="selected" name="GuessFactorGun"/>
+	<feature automatic="selected" manual="selected" name="Tank"/>
+	<feature manual="selected" name="Targeting"/>
+	<feature automatic="selected" name="GuessFactorGun"/>
+	<feature automatic="selected" name="Movement"/>
+	<feature automatic="selected" manual="selected" name="WaveSurfing"/>
+	<feature manual="selected" name="WaveDebugging"/>
+	<feature automatic="unselected" name="RandomOrbitalMovement"/>
+	<feature automatic="selected" manual="selected" name="Utilties"/>
+	<feature manual="selected" name="ColorBlueBlackYellow"/>
 </configuration>
