@@ -4,8 +4,8 @@
 	<feature manual="selected" name="Targeting"/>
 	<feature automatic="selected" name="GuessFactorGun"/>
 	<feature automatic="selected" name="Movement"/>
-	<feature automatic="selected" manual="selected" name="WaveSurfing"/>
-	<feature manual="selected" name="WaveDebugging"/>
+	<feature manual="selected" name="WaveSurfing"/>
+	<feature name="WaveDebugging"/>
 	<feature automatic="unselected" name="RandomOrbitalMovement"/>
 	<feature automatic="selected" manual="selected" name="Utilties"/>
 	<feature manual="selected" name="ColorBlueBlackYellow"/>
