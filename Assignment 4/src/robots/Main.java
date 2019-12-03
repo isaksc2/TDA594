@@ -67,6 +67,8 @@ public class Main extends AdvancedRobot {
 		} while (true);
 	}
 	public void onScannedRobot(ScannedRobotEvent e) {
+		
+		// absBearing from BasicGFSurfer have been refactored to the name used in GFTargetingBot since it's more descriptive.
 		double enemyAbsoluteBearing = getHeadingRadians() + e.getBearingRadians();
 		//#if WaveSurfing
 		_myLocation = new Point2D.Double(getX(), getY());
@@ -392,6 +394,9 @@ class GFTWave extends Condition {
 	Point2D gunLocation;
 	double bearing;
 	double lateralDirection;
+	
+	// Different Max_Distance in the two different robots using GF-gun
+	
 	//#if RandomOrbitalMovement
 //@	private static final double MAX_DISTANCE = 1000;
 	//#endif
@@ -430,6 +435,8 @@ class GFTWave extends Condition {
 	}
 	
 	void setSegmentations(double distance, double velocity, double lastVelocity) {
+		//Different implementation between the two robots using GF-gun
+		
 		//#if WaveSurfing
 		int distanceIndex = Math.min(DISTANCE_INDEXES-1, (int)(distance / (MAX_DISTANCE / DISTANCE_INDEXES)));
 		//#endif
